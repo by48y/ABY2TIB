@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Models\Pelanggan;
 
 class PelangganController extends Controller
@@ -27,13 +28,14 @@ class PelangganController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
-        $data['first_name'] = $request->first_name;
-		$data['last_name'] = $request->last_name;
-		$data['birthday'] = $request->birthday;
-		$data['gender'] = $request->gender;
-		$data['email'] = $request->email;
-		$data['phone'] = $request->phone;
+        $data = $request->validate([
+            'first_name' => ['required', 'string'],
+            'last_name' => ['required', 'string'],
+            'birthday' => ['required', 'date'],
+            'gender' => ['required', 'in:Male,Female'],
+            'email' => ['required', 'email', 'unique:pelanggan,email'],
+            'phone' => ['required', 'numeric'],
+        ]);
 
 		Pelanggan::create($data);
 
@@ -61,20 +63,25 @@ class PelangganController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-{
-    $pelanggan_id = $id;
-    $pelanggan = Pelanggan::findOrFail($pelanggan_id);
+    {
+        $pelanggan_id = $id;
+        $pelanggan = Pelanggan::findOrFail($pelanggan_id);
 
-    $pelanggan->first_name = $request->first_name;
-    $pelanggan->last_name = $request->last_name;
-    $pelanggan->birthday = $request->birthday;
-    $pelanggan->gender = $request->gender;
-    $pelanggan->email = $request->email;
-    $pelanggan->phone = $request->phone;
+        $pelanggan->update($request->validate([
+            'first_name' => ['required', 'string'],
+            'last_name' => ['required', 'string'],
+            'birthday' => ['required', 'date'],
+            'gender' => ['required', 'in:Male,Female'],
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('pelanggan', 'email')->ignore($pelanggan->pelanggan_id, 'pelanggan_id'),
+            ],
+            'phone' => ['required', 'numeric'],
+        ]));
 
-    $pelanggan->save();
-    return redirect()->route('pelanggan.index')->with('success','Perubahan Data Berhasil!');
-}
+        return redirect()->route('pelanggan.index')->with('success','Perubahan Data Berhasil!');
+    }
 
     /**
      * Remove the specified resource from storage.

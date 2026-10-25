@@ -277,7 +277,7 @@
                     <p class="mb-0">Form untuk mengedit data pelanggan.</p>
                 </div>
                 <div>
-                    <a href="{{ route('pelanggan.update', $dataPelanggan->pelanggan_id) }}" class="btn btn-primary"><i class="far fa-question-circle me-1"></i> Kembali</a>
+                    <a href="{{ route('pelanggan.index') }}" class="btn btn-primary">Kembali</a>
                 </div>
             </div>
         </div>
@@ -294,13 +294,15 @@
                                     <!-- First Name -->
                                     <div class="mb-3">
                                         <label for="first_name" class="form-label">First name</label>
-                                        <input value="{{ $dataPelanggan->first_name }}" type="text" id="first_name" class="form-control" name="first_name" required>
+                                        <input value="{{ old('first_name', $dataPelanggan->first_name) }}" type="text" id="first_name" class="form-control @error('first_name') is-invalid @enderror" name="first_name" required>
+                                        @error('first_name') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                     </div>
 
                                     <!-- Last Name -->
                                     <div class="mb-3">
                                         <label for="last_name" class="form-label">Last name</label>
-                                        <input value="{{ $dataPelanggan->last_name }}" type="text" id="last_name" class="form-control" name="last_name" required>
+                                        <input value="{{ old('last_name', $dataPelanggan->last_name) }}" type="text" id="last_name" class="form-control @error('last_name') is-invalid @enderror" name="last_name" required>
+                                        @error('last_name') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                     </div>
                                 </div>
 
@@ -308,18 +310,19 @@
                                     <!-- Birthday -->
                                     <div class="mb-3">
                                         <label for="birthday" class="form-label">Birthday</label>
-                                        <input value="{{ $dataPelanggan->birthday }}" type="date" id="birthday" class="form-control" name="birthday" required>
+                                        <input value="{{ old('birthday', $dataPelanggan->birthday) }}" type="date" id="birthday" class="form-control @error('birthday') is-invalid @enderror" name="birthday" required>
+                                        @error('birthday') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                     </div>
 
                                     <!-- Gender -->
                                     <div class="mb-3">
                                         <label for="gender" class="form-label">Gender</label>
-                                        <select id="gender" name="gender" class="form-select">
-                                            <option value="{{ $dataPelanggan->gender }}" selected>{{ $dataPelanggan->gender }}</option>
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
-                                            <option value="Other">Other</option>
+                                        <select id="gender" name="gender" class="form-select @error('gender') is-invalid @enderror">
+                                            <option value="">-- Pilih --</option>
+                                            <option value="Male" @selected(old('gender', $dataPelanggan->gender) === 'Male')>Male</option>
+                                            <option value="Female" @selected(old('gender', $dataPelanggan->gender) === 'Female')>Female</option>
                                         </select>
+                                        @error('gender') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                     </div>
                                 </div>
 
@@ -327,13 +330,15 @@
                                     <!-- Email -->
                                     <div class="mb-3">
                                         <label for="email" class="form-label">Email</label>
-                                        <input value="{{ $dataPelanggan->email }}" type="email" id="email" class="form-control" name="email" required>
+                                        <input value="{{ old('email', $dataPelanggan->email) }}" type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email" required>
+                                        @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                     </div>
 
                                     <!-- Phone -->
                                     <div class="mb-3">
                                         <label for="phone" class="form-label">Phone</label>
-                                        <input value="{{ $dataPelanggan->phone }}"   type="text" id="phone" class="form-control" name="phone">
+                                        <input value="{{ old('phone', $dataPelanggan->phone) }}" type="text" id="phone" class="form-control @error('phone') is-invalid @enderror" name="phone" required>
+                                        @error('phone') <div class="invalid-feedback">{{ $message }}</div> @enderror
                                     </div>
 
                                     <!-- Buttons -->
