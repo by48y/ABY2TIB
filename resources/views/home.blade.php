@@ -1,274 +1,265 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="id">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Laravel App</title>
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Aby Amanullah — CV & Portofolio</title>
+    <meta name="description" content="CV dan portofolio Aby Amanullah">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap"
+        rel="stylesheet">
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
+        :root {
+            --ink: #14213d;
+            --cyan: #2dd4bf;
+            --paper: #f6f7fb;
+            --muted: #667085;
         }
 
-        .navbar-brand {
-            font-weight: bold;
+        * {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--paper);
+            color: var(--ink);
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        .brand {
+            font-family: 'Space Grotesk', sans-serif;
         }
 
         .navbar {
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background: rgba(246, 247, 251, .9);
+            backdrop-filter: blur(12px);
         }
 
-        .hero-section {
-            background-color: #3187e9;
-            color: white;
-            padding: 50px 0;
-            text-align: center;
+        .hero {
+            padding: 130px 0 90px;
+            background: radial-gradient(circle at 80% 10%, #c9fff5, transparent 35%);
         }
 
-        .hero-section h1 {
-            font-size: 3rem;
+        .eyebrow {
+            color: #0f9f8c;
+            font-size: .8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
         }
 
-        .card {
-            margin-top: 30px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        .display-title {
+            font-size: clamp(3.2rem, 8vw, 7rem);
+            line-height: .95;
+            letter-spacing: -5px;
         }
 
-        .footer {
-            margin-top: 50px;
-            padding: 20px 0;
-            background-color: #f8f9fa;
-            text-align: center;
+        .accent {
+            color: #0f9f8c;
         }
 
-        .footer p {
-            margin: 0;
-            font-size: 0.9rem;
-            color: #6c757d;
+        .avatar {
+            width: 210px;
+            height: 210px;
+            border-radius: 28px;
+            background: #14213d;
+            color: var(--cyan);
+            display: grid;
+            place-items: center;
+            font-size: 5rem;
+            font-family: 'Space Grotesk';
+            transform: rotate(4deg);
+            box-shadow: 18px 18px 0 var(--cyan);
+        }
+
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 4rem);
+            letter-spacing: -2px;
+        }
+
+        .card-clean {
+            border: 0;
+            border-radius: 20px;
+            background: #fff;
+            box-shadow: 0 12px 30px rgba(20, 33, 61, .06);
+            overflow: hidden;
+        }
+
+        .project-image {
+            height: 210px;
+            background: linear-gradient(135deg, #14213d, #35607d);
+            display: grid;
+            place-items: center;
+            color: var(--cyan);
+            font-size: 4rem;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .muted {
+            color: var(--muted);
+        }
+
+        .skill-bar {
+            height: 8px;
+            background: #e6eaf0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .skill-bar span {
+            display: block;
+            height: 100%;
+            background: var(--cyan);
+        }
+
+        footer {
+            background: #14213d;
+            color: #d9e2ef;
+        }
+
+        .btn-accent {
+            background: var(--cyan);
+            color: #08231f;
+            border: 0;
+            font-weight: 700;
         }
     </style>
 </head>
 
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="#">My Laravel App</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Features</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                </ul>
+    <nav class="navbar navbar-expand-lg fixed-top border-bottom">
+        <div class="container py-2"><a class="navbar-brand brand fw-bold" href="#beranda">AA<span
+                    class="accent">.</span></a>
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">☰</button>
+            <div class="collapse navbar-collapse" id="nav">
+                <div class="navbar-nav ms-auto gap-lg-3"><a class="nav-link" href="#tentang">Tentang</a><a
+                        class="nav-link" href="#skill">Skill</a><a class="nav-link" href="#pengalaman">Pengalaman</a><a
+                        class="nav-link" href="#portofolio">Portofolio</a><a class="nav-link"
+                        href="{{ route('dashboard') }}">Admin ↗</a></div>
             </div>
         </div>
     </nav>
-
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="container">
-            <h1 class="display-6 mb-2">{{ $username }}!</h1>
-            <p class="lead mb-0">{{ $last_login }}</p>
-        </div>
-    </section>
-
-    <!-- Content Section -->
-    <section id="content" class="container ">
-        <div class="row">
-            <div class="col-md-6">
-                {{-- About --}}
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <h5 class="card-title">About Our Application</h5>
-                        <p class="card-text">Our application provides a clean and intuitive interface, allowing users to
-                            navigate easily and perform tasks efficiently. Built with Laravel and Bootstrap, it offers
-                            flexibility and responsiveness.</p>
-                        <a href="#" class="btn btn-primary">Explore More</a>
+    <main>
+        <section id="beranda" class="hero">
+            <div class="container">
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-7">
+                        <p class="eyebrow">WEB DEVELOPER • INFORMATIKA</p>
+                        <h1 class="display-title mb-4">Aby<br><span class="accent">Amanullah.</span></h1>
+                        <p class="lead muted mb-4">Saya membangun aplikasi web yang rapi, cepat, dan menyelesaikan
+                            masalah nyata dengan Laravel dan JavaScript.</p><a
+                            class="btn btn-accent rounded-pill px-4 py-3" href="#portofolio">Lihat karya saya ↓</a>
                     </div>
-                </div>
-
-                <!-- Accordion -->
-                <div class="accordion" id="accordionExample">
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseOne">
-                                About Us
-                            </button>
-                        </h2>
-                        <div id="collapseOne" class="accordion-collapse collapse show"
-                            data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                We are a tech company that specializes in web development solutions.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseTwo">
-                                Our Services
-                            </button>
-                        </h2>
-                        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                We offer web development, SEO optimization, and digital marketing services.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Badge, List & Card --}}
-                <div class="card">
-                    <div class="card-body">
-                        <h3 class="h5 mb-3">Badges, List, &amp; Card</h3>
-                        <div class="mb-3">
-                            <span class="badge text-bg-primary">Web Dev</span>
-                            <span class="badge text-bg-success">Laravel</span>
-                            <span class="badge text-bg-danger">Bootstrap</span>
-                        </div>
-                        <ul class="list-group mb-3">
-                            <li class="list-group-item">Item Satu</li>
-                            <li class="list-group-item">Item Dua</li>
-                            <li class="list-group-item">Item Tiga</li>
-                        </ul>
-                        <div class="p-3 border rounded">
-                            <strong>Div umum</strong> — ini hanya <em>container</em> untuk konten bebas.
-                        </div>
-                        <p class="text-muted small mt-3 mb-0">
-                            Gunakan <code>.card</code> untuk konten yang butuh border & sedikit efek shadow.
-                        </p>
+                    <div class="col-lg-5 d-flex justify-content-center">
+                        <div class="avatar">AA</div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Form Pertanyaan</h5>
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                        <form action="{{ route('question.store') }}" method="POST" novalidate>
-                            @csrf
-                            <div class="mb-3">
-                                <label for="nama" class="form-label">Nama</label>
-                                <input type="text" class="form-control" id="nama" name="nama"
-                                    value="{{ old('nama') }}">
-                            </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="text" class="form-control" id="email" name="email"
-                                    value="{{ old('email') }}">
-                            </div>
-                            <div class="mb-3">
-                                <label for="pertanyaan" class="form-label">Pertanyaan</label>
-                                <textarea class="form-control" id="pertanyaan" name="pertanyaan" rows="4">{{ old('pertanyaan') }}</textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Kirim Pertanyaan</button>
-                        </form>
+        </section>
+        <section id="tentang" class="section">
+            <div class="container">
+                <div class="row g-5">
+                    <div class="col-lg-5">
+                        <p class="eyebrow">01 — TENTANG</p>
+                        <h2 class="section-title">Ide menjadi <span class="accent">solusi.</span></h2>
                     </div>
-                </div>
-                {{-- Alerts --}}
-                <div class="card ">
-                    <div class="card-body">
-                        <h3 class="h5 mb-3">Alerts</h3>
-                        <div class="alert alert-primary mb-2">Informational alert</div>
-                        <div class="alert alert-success mb-2">Success alert</div>
-                        <div class="alert alert-warning mb-2">Warning alert</div>
-                        <div class="alert alert-danger mb-0">Danger alert</div>
-                    </div>
-                </div>
-
-                {{-- Buttons --}}
-                <div class="card">
-                    <div class="card-body">
-                        <h3 class="h5 mb-3">Buttons</h3>
-                        <div class="d-flex flex-wrap gap-2">
-                            <button class="btn btn-primary">Primary</button>
-                            <button class="btn btn-secondary">Secondary</button>
-                            <button class="btn btn-outline-primary">Outline</button>
-                            <button class="btn btn-success">Success</button>
-                            <button class="btn btn-danger">Danger</button>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Table --}}
-                <div class="card">
-                    <div class="card-body">
-                        <h3 class="h5 mb-3">Table</h3>
-                        <div class="table-responsive">
-                            <table class="table align-middle">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Name</th>
-                                        <th>Role</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Ani</td>
-                                        <td>Admin</td>
-                                        <td><span class="badge text-bg-success">Active</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Budi</td>
-                                        <td>User</td>
-                                        <td><span class="badge text-bg-secondary">Inactive</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Cici</td>
-                                        <td>Editor</td>
-                                        <td><span class="badge text-bg-warning">Pending</span></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <p class="text-muted small mb-0">Tambahkan <code>.table-striped</code> atau
-                            <code>.table-bordered</code> sesuai kebutuhan.
-                        </p>
+                    <div class="col-lg-7">
+                        <p class="fs-4">Mahasiswa Informatika yang fokus pada pengembangan produk digital dan
+                            pengalaman pengguna.</p>
+                        <p class="muted">Terbiasa mengerjakan aplikasi CRUD, integrasi database, autentikasi, dan
+                            desain antarmuka responsif menggunakan Laravel, PHP, MySQL, Bootstrap, dan JavaScript.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; {{ date('Y') }} My Laravel App. All Rights Reserved.</p>
-        </div>
+        </section>
+        <section id="skill" class="section bg-white">
+            <div class="container">
+                <p class="eyebrow">02 — KOMPETENSI</p>
+                <h2 class="section-title mb-5">Tools yang saya gunakan.</h2>
+                <div class="row g-4">
+                    @forelse($skills as $skill)
+                        <div class="col-md-6">
+                            <div class="d-flex justify-content-between mb-2"><strong>{{ $skill->nama }}</strong><span
+                                    class="muted">{{ $skill->level }}%</span></div>
+                            <div class="skill-bar"><span style="width:{{ $skill->level }}%"></span></div>
+                    </div>@empty<p class="muted">Tambahkan skill melalui halaman admin.</p>
+                    @endforelse
+                </div>
+            </div>
+        </section>
+        <section id="pengalaman" class="section">
+            <div class="container">
+                <p class="eyebrow">03 — PERJALANAN</p>
+                <h2 class="section-title mb-5">Pengalaman & pendidikan.</h2>
+                <div class="row g-4">
+                    @forelse($pengalaman as $item)
+                        <div class="col-lg-6">
+                            <div class="card-clean p-4 h-100">
+                                <p class="eyebrow mb-2">{{ $item->periode }}</p>
+                                <h3>{{ $item->posisi }}</h3>
+                                <h5 class="muted">{{ $item->instansi }}</h5>
+                                <p class="muted mb-0">{{ $item->deskripsi }}</p>
+                            </div>
+                    </div>@empty<p class="muted">Tambahkan pengalaman melalui halaman admin.</p>
+                    @endforelse
+                </div>
+            </div>
+        </section>
+        <section id="portofolio" class="section bg-white">
+            <div class="container">
+                <p class="eyebrow">04 — KARYA TERPILIH</p>
+                <h2 class="section-title mb-5">Project yang pernah dibuat.</h2>
+                <div class="row g-4">
+                    @forelse($portofolios as $project)
+                        <div class="col-md-6 col-lg-4">
+                            <article class="card-clean h-100">
+                                @if ($project->gambar)
+                                    <div class="project-image"><img src="{{ asset($project->gambar) }}"
+                                        alt="{{ $project->judul }}"></div>@else<div class="project-image">&lt;/&gt;
+                                    </div>
+                                @endif
+                                <div class="p-4">
+                                    <small class="accent fw-bold">{{ $project->kategori }} @if ($project->tahun)
+                                            • {{ $project->tahun }}
+                                        @endif
+                                    </small>
+                                    <h3 class="mt-2">{{ $project->judul }}</h3>
+                                    <p class="muted">{{ $project->deskripsi }}</p>
+                                    @if ($project->teknologi)
+                                        <p class="small muted mb-3">{{ $project->teknologi }}</p>
+                                        @endif @if ($project->link_project)
+                                            <a class="accent text-decoration-none fw-bold"
+                                                href="{{ $project->link_project }}" target="_blank"
+                                                rel="noopener">Lihat project ↗</a>
+                                        @endif
+                                </div>
+                            </article>
+                    </div>@empty<p class="muted">Belum ada portofolio. Tambahkan dari halaman admin.</p>
+                    @endforelse
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="py-5">
+        <div class="container d-flex flex-wrap justify-content-between gap-3"><span>© {{ date('Y') }} Aby
+                Amanullah</span><span>Template : <a class="text-info"
+                    href="https://getbootstrap.com/docs/5.3/" target="_blank" rel="noopener">Bootstrap 5</a>
+                (open-source)</span></div>
     </footer>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
