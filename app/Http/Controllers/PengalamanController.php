@@ -4,12 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Pengalaman;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PengalamanController extends Controller
 {
     public function index()
     {
+        if(!Auth::check()){
+            return redirect()->route('auth.login');
+        }
+        return view('admin.dashboard');
         return view('admin.pengalaman.index', ['items' => Pengalaman::latest()->get()]);
+
     }
 
     public function create()

@@ -14,10 +14,11 @@ class CreateFirstUser extends Seeder
      */
     public function run(): void
     {
-        User::create([
+            User::create([
             'name' => 'Admin',
             'email' => 'gatot@pcr.ac.id',
-            'password' => Hash::make('gatotkaca')
+            'password' => Hash::make('gatotkaca'),
+            'role' => 'super_admin',
         ]);
     }
 }

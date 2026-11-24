@@ -5,15 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Pengalaman;
 use App\Models\Portofolio;
 use App\Models\Skill;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return view('home', [
-            'portofolios' => Portofolio::latest()->get(),
-            'skills' => Skill::orderByDesc('level')->get(),
-            'pengalaman' => Pengalaman::latest()->get(),
-        ]);
+        if(!Auth::check()){
+            return redirect()->route('auth.login');
+        }
+        return view('admin.dashboard');
     }
 }

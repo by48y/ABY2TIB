@@ -39,6 +39,20 @@
                     </div>
                     <div class="col-lg-4 col-sm-6">
                         <div class="mb-3">
+                            <label for="role" class="form-label">Role</label>
+                            <select id="role" class="form-select @error('role') is-invalid @enderror" name="role" required>
+                                <option value="">Select Role</option>
+                                @foreach ($roles as $role)
+                                    <option value="{{ $role }}" {{ old('role') == $role ? 'selected' : '' }}>
+                                        {{ $role === 'super_admin' ? 'Super Admin' : ucfirst($role) }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('role')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
                             <input type="password" id="password"
                                 class="form-control @error('password') is-invalid @enderror" name="password" required>

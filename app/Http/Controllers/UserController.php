@@ -6,14 +6,25 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    private const ROLES = [
+        'super_admin',
+        'pelanggan',
+        'mitra',
+    ];
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        if(!Auth::check()){
+            return redirect()->route('auth.login');
+        }
+
         $data['dataUser'] = User::all();
 
         return view('admin.user.index', $data);
@@ -24,7 +35,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.user.create');
+        return view('admin.user.create', ['roles' => self::ROLES]);
     }
 
     /**
@@ -36,6 +47,7 @@ class UserController extends Controller
             'name' => ['required', 'string', 'max:100'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'min:8', 'confirmed'],
+            'role' => ['required', Rule::in(self::ROLES)],
         ]);
 
         $data['password'] = Hash::make($data['password']);
@@ -58,6 +70,7 @@ class UserController extends Controller
     public function edit(string $id)
     {
         $data['dataUser'] = User::findOrFail($id);
+        $data['roles'] = self::ROLES;
 
         return view('admin.user.edit', $data);
     }
@@ -77,6 +90,7 @@ class UserController extends Controller
                 Rule::unique('users', 'email')->ignore($user->id),
             ],
             'password' => ['nullable', 'min:8', 'confirmed'],
+            'role' => ['required', Rule::in(self::ROLES)],
         ]);
 
         if (filled($data['password'] ?? null)) {

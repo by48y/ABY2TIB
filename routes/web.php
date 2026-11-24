@@ -9,9 +9,13 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
-Route::resource('pelanggan', PelangganController::class);
-Route::resource('user', UserController::class)->except(['show']);
+Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
+Route::post('/logout', [AuthController::class, 'logout'])
+    ->middleware('auth')
+    ->name('auth.logout');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -20,8 +24,12 @@ Route::post('question/store', [QuestionController::class, 'store'])
 
 Route::get('/home', [HomeController::class, 'index']);
 
-Route::get('dashboard', [DashboardController::class, 'index'])
-    ->name('dashboard');
-Route::resource('portofolio', PortofolioController::class)->except(['show']);
-Route::resource('skill', SkillController::class)->except(['show']);
-Route::resource('pengalaman', PengalamanController::class)->except(['show']);
+Route::middleware('checkislogin')->group(function () {
+    Route::get('dashboard', [DashboardController::class, 'index'])
+        ->name('dashboard');
+
+    Route::middleware('checkrole:super_admin')->group(function () {
+        Route::resource('pelanggan', PelangganController::class);
+        Route::resource('user', UserController::class)->except(['show']);
+    });
+});
